@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var articleRouter = require('./routes/articles')
+
 
 var app = express();
 
@@ -13,21 +15,22 @@ const mongoose = require('mongoose');
 require('dotenv').config()
 
 
-const dev_db_url = 'mongodb+srv://suebaduo:mskrab002@blog-tutorial.wocz5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const mongoDB = process.env.MONGODB_URI || dev_db_url
 
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
-  .then((result) => {
-    server.listen(port);
-    console.log('Connected to DB');
-  })
-  .catch((err) => console.log(err))
+// const dev_db_url = 'mongodb+srv://suebaduo:mskrab002@blog-tutorial.wocz5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+// const mongoDB = process.env.MONGODB_URI || dev_db_url
+
+// mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
+//   .then((result) => {
+//     server.listen(port);
+//     console.log('Connected to DB');
+//   })
+//   .catch((err) => console.log(err))
 
   
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -42,6 +45,30 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
+app.get('/', (req, res) =>{
+  const articles = [{
+      title:"test Article",
+      createdAt: new Date,
+      description:"My description"
+  },
+  {
+      title:"test Article 2",
+      createdAt: new Date,
+      description:"My description 2"
+  }
+]
+  res.render('index', { articles: articles})
+})
+
+
+app.get('/', (req, res) =>{
+  res.render('index')
+})
+
+
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
