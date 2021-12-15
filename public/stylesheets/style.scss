@@ -45,3 +45,34 @@ table {
 h1{
     color:green;
 }
+
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Roboto Thin', sans-serif;
+// font-family: 'Roboto Light', sans-serif;
+// font-family: 'Roboto Medium', sans-serif;
+// font-family: 'Roboto Black', sans-serif;
+
+header{
+	background:#d05663;
+	padding:10px 20px; 
+	font-family: 'Roboto', sans-serif;
+	display:flex;
+	justify-content:space-between;
+	h3{
+		font-size:30px;
+		color:#ffffff;
+	}
+	.menu{
+		display: flex;
+		justify-content: space-around;
+	}
+
+	
+	a{
+		text-decoration:none;
+		color:#fff;
+		display:block;
+		padding:5px 15px;
+		margin:0 5px;
+	}
+}
